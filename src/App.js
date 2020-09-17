@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import Movie from "./components/Movie";
+import 'bootstrap/dist/css/bootstrap.css';
+require('dotenv').config();
 
 function App() {
+
+  let movies = require('./movies.json');
+  
+  const [superheroMovies, setMovies] = useState(movies);
+
+  useEffect(() => {
+    fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s="superhero"&type=movie&r=json`)
+      .then((response) => response.json())
+      .then(data => {
+        setMovies(data.Search)
+      });
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        superheroMovies.map((movie, i) => {
+          return <Movie key={'movie' + i} movie={movie}/>
+        })
+      }
     </div>
   );
 }
