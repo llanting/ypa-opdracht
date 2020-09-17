@@ -1,30 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
-import Movie from "./components/Movie";
+import Movieslist from './components/Movieslist.js';
+import MovieDetails from './components/MovieDetails';
 import 'bootstrap/dist/css/bootstrap.css';
+import {Switch, Route} from 'react-router-dom';
 require('dotenv').config();
 
 function App() {
 
-  let movies = require('./movies.json');
-  
-  const [superheroMovies, setMovies] = useState(movies);
-
-  useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s="superhero"&type=movie&r=json`)
-      .then((response) => response.json())
-      .then(data => {
-        setMovies(data.Search)
-      });
-  }, [])
-
   return (
     <div className="App">
-      {
-        superheroMovies.map((movie, i) => {
-          return <Movie key={'movie' + i} movie={movie}/>
-        })
-      }
+      <Switch>
+        <Route exact path="/" component={Movieslist}/>
+        <Route path="/:movieId" render={(routeProps) => {
+          return <MovieDetails {...routeProps}/>
+        }} />
+      </Switch>
     </div>
   );
 }
