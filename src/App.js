@@ -7,7 +7,6 @@ import {Switch, Route} from 'react-router-dom';
 require('dotenv').config();
 
 function App() {
-
   return (
     <div className="App">
       <Switch>

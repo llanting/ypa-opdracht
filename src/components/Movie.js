@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function movie(props) {
   console.log(props.movie)
   return (
-    <Link to={`/${props.movie.imdbID}`}>
+    <Link to={`/${props.movie.imdbID}`} style={{color: "black", textDecoration: "none"}}>
       <Card className="movieCard">
         <Card.Img variant="top" src={props.movie.Poster} className="poster"/>
         <Card.Body>

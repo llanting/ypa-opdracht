@@ -11,7 +11,7 @@ export default function MovieDetails(props) {
       .then(data => {
         setMovie(data)
       });
-  }, [])
+  }, [movieId])
 
   if (!movie) {
     return <p>Loading...</p>
@@ -22,7 +22,7 @@ export default function MovieDetails(props) {
       <div className="info">
         <h1>{movie.Title}</h1>
         <p>{movie.Plot}</p>
-        {/* <a href=`https://www.imdb.com/title/${movieId}/`>Go to IMDB-page</a> */}
+        <a href={`https://www.imdb.com/title/${movieId}/`}>Go to IMDB-page</a>
       </div>
       <img src={movie.Poster} alt="poster"/>
     </div>
