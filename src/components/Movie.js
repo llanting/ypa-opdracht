@@ -3,7 +3,6 @@ import {Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default function movie(props) {
-  console.log(props.movie)
   return (
     <Link to={`/${props.movie.imdbID}`} style={{color: "black", textDecoration: "none"}}>
       <Card className="movieCard">
