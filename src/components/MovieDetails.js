@@ -13,6 +13,10 @@ export default function MovieDetails(props) {
       });
   }, [movieId])
 
+  const showAlert = (text) => {
+    alert(`${text}`)
+  }
+
   if (!movie) {
     return <p>Loading...</p>
   }
@@ -20,9 +24,9 @@ export default function MovieDetails(props) {
   return (
     <div className="movie-details">
       <div className="info">
-        <h1>{movie.Title}</h1>
-        <p>{movie.Plot}</p>
-        <a href={`https://www.imdb.com/title/${movieId}/`}>Go to IMDB-page</a>
+        <button onClick={() => showAlert(movie.Title)}><h1>{movie.Title}</h1></button>
+        <button onClick={() => showAlert(movie.Plot)}><p>{movie.Plot}</p></button>
+        <button onClick={() => showAlert(`https://www.imdb.com/title/${movieId}/`)}><a href={`https://www.imdb.com/title/${movieId}/`}>Go to IMDB-page</a></button>
       </div>
       <img src={movie.Poster} alt="poster"/>
     </div>
